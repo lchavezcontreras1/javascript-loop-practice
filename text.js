@@ -1,34 +1,14 @@
 $(document).ready(function () {
-    var myRules = {
-        myNumber:
-            {
-                required: true,
-                digits: true,
-                min: 1,
-                max: 1000
-            }
-    };
-    var myMessages = {
-        myNumber:
-            {
-                required: "Must fill in number",
-                digits: "Only whole numbers",
-                min: "Must be 1 - 1000",
-                max: "Must be 1 - 1000"
-            }
-    };
-
-    $("#loopTestForm").validate({
-        rules: myRules,
-        messages: myMessages,
-        submitHandler: runLoops
-    });
+    $("form#loopTestForm").submit(runLoops);
 });
 
-function runLoops() {
+function runLoops(event) {
+    // Stop the form from submitting
+    event.preventDefault();
+
     // This variable will contain one of three strings:
     // "for-loop", "while-loop", or "do-while-loop"
-    var selectedLoop = $("input[name=loop-type]:checked").val();
+    let selectedLoop = $("input[name=loop-type]:checked").val();
 
     /*
         Depending on which loop was selected,
@@ -50,45 +30,54 @@ function runLoops() {
 
 
 function runWhileLoop() {
-    var number = parseInt($("#myNumber").val());
-    var output = "";
+    let number = parseInt($("input#myNumber").val());
+    let output = "";
 
     /*
-        Use a while loop to concatenate the letter A
-        "number" times to the string "output". For example,
-        if "number" is 5, then output should be "AAAAA".
+        Use a while loop to output the letter A
+        "number" times. For example, if "number" is 5,
+        then output should be "AAAAA".
 
-        (Or for a challenge, concatenate the first "number" letters of the alphabet!)
+        (Or for a challenge, output the first "number" letters of the alphabet!)
+
+        Hint: Use jQuery's append() to add text to an element
+        (instead of replacing text)
+
+        $("div#while-result").append(...);
     */
 
 
-    $("#while-result").text(output);
+    $("div#while-result").text(output);
 }
 
 
 function runForLoop() {
-    var number = parseInt($("#myNumber").val());
-    var sum = 0;
+    let number = parseInt($("input#myNumber").val());
+    let sum = 0;
 
     /*
         Use a for loop to add the numbers 1 through "number"
-        into the variable "sum".
+        into the variable "sum". Output the sum to the div.
     */
 
-    $("#for-result").text(sum);
+    $("div#for-result").text(sum);
 }
 
 
 function runDoWhileLoop() {
-    var number = parseInt($("#myNumber").val());
-    var output = "";
+    let number = parseInt($("input#myNumber").val());
 
     /*
-        Use a do-while loop to concatenate the numbers 1 through
-        "number" to the string "output". For example, if "number"
-        is 5, then output should be "12345".
+        Use a do-while loop to output the numbers 1 through
+        "number". For example, if "number" is 5, then output
+        should be "12345".
+
+        Hint: Use jQuery's append() to add text to an element
+        (instead of replacing text)
+
+        $("div#do-while-result").append(...);
     */
 
 
-    $("#do-while-result").text(output);
+
 }
