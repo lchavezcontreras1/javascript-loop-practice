@@ -24,13 +24,11 @@ function runWhileLoop() {
 function runDoWhileLoop() {
     $("div.result").empty();
     let number = parseInt($("input#myNumber").val());
-    let start =1;
-    let output="";
+    let start =0;
     do{
-        output =+ start;
-        $("div#do-while-result").append(output);
         start++;
-    }while (start<=number);
+        $("div#do-while-result").append(start);
+    }while (start<number);
 }
 function runForLoop() {
     $("div.result").empty();
